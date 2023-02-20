@@ -1,17 +1,15 @@
 #include <iostream>
 
+#include "hello.h"
 #include "HalideBuffer.h"
 #include "halide_benchmark.h"
-#include "halide_image_io.h"
-
-#include "hello.h"
 
 using namespace Halide::Runtime;
 
 int main()
 {
     uint8_t data[4] = {1, 2, 3, 4};
-    
+
     Buffer<uint8_t> input(data, 2, 2);
     Buffer<uint8_t> output(2, 2);
 
@@ -30,8 +28,6 @@ int main()
         }
         std::cout << "\n";
     }
-
-    Halide::Tools::convert_and_save_image(output, "image.tiff");
 
     return 0;
 }

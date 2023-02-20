@@ -1,26 +1,15 @@
-cmake_minimum_required(VERSION 3.10)
-
-# set compiler path
-if(NOT ANDROID)
-    set(CMAKE_C_COMPILER "/opt/llvm-project/build/bin/clang")
-    set(CMAKE_CXX_COMPILER "/opt/llvm-project/build/bin/clang++")
-endif()
-
-set(CMAKE_CXX_STANDARD 11)
-
-if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE DEBUG)
-endif()
+cmake_minimum_required(VERSION 3.20)
 
 # project name
-project(hello-halide CXX)
+project(hello-halide C CXX)
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+set(CMAKE_CXX_STANDARD 17)
+
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Debug)
+endif()
 
 # halide
-set(HALIDE_DISTRIB_DIR "/opt/Halide/build/install/")
-include("${HALIDE_DISTRIB_DIR}/halide.cmake")
+find_package(Halide REQUIRED)
 
 add_subdirectory(src)
