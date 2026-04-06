@@ -1,8 +1,11 @@
+#!/usr/bin/env bash
+
 set -e
 
-mkdir -p build
-cd build
+source .env
 
-cmake -DCMAKE_PREFIX_PATH="${Halide_DIR}" ../
+cmake -S . -B build \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_PREFIX_PATH="$Halide_DIR"
 
-cmake --build .
+cmake --build build -j"$(nproc)"
